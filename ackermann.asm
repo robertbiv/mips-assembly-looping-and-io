@@ -6,6 +6,7 @@ ans: .asciiz "ack = "
 .globl main
 
 main:
+    # get inputs
     li $v0, 4
     la $a0, ask_m
     syscall
@@ -18,9 +19,11 @@ main:
     li $v0, 5         # get n
     syscall
     move $t9, $v0    
+    # call ackermann
     move $a0, $t8
     move $a1, $t9
     jal ack
+    # print result
     move $t0, $v0
     li $v0, 4
     la $a0, ans

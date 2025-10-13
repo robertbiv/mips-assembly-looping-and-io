@@ -6,18 +6,22 @@ no:  .asciiz " not prime\n"
 .globl main
 
 main:
+	# get input
 	li $v0, 4
 	la $a0, ask
 	syscall
 	li $v0, 5      # get num
 	syscall
 	move $t0, $v0    
+	# check if prime
 	move $a0, $t0
 	jal isPrime
 	move $t1, $v0      
+	# print number
 	move $a0, $t0
 	li $v0, 1
 	syscall            
+	# print result
 	beqz $t1, not_prime
 	li $v0, 4
 	la $a0, yes
@@ -32,6 +36,7 @@ done:
 	syscall
 
 isPrime:
+	# check if number is prime
 	move $t1, $a0      
 	blez $t1, no_prime     # <= 1 not prime
 	li $t2, 2

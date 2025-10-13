@@ -22,8 +22,10 @@ main:
 	jal multiply
 	addi $sp, $sp, 4
 	
+	# check if multiply worked
 	beqz $v0, fail
 	
+	# print results
 	li $v0, 4
 	la $a0, ok
 	syscall
@@ -104,6 +106,7 @@ multiply:
 	move $s3, $a2      
 	move $s4, $a3      
 	
+	# check valid dimensions
 	blez $s3, bad    
 	blez $s4, bad    
 	blez $s5, bad

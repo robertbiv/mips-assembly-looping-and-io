@@ -6,6 +6,7 @@ ans: .asciiz "C = "
 .globl main
 
 main:
+    # get inputs
     li $v0, 4
     la $a0, ask_n
     syscall  
@@ -18,9 +19,11 @@ main:
     li $v0, 5         # get r
     syscall
     move $t1, $v0   
+    # call function
     move $a0, $t0
     move $a1, $t1
     jal combo
+    # print result
     move $t2, $v0
     li $v0, 4
     la $a0, ans
